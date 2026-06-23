@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Target Test Blog</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">Target<span>Test</span></a>
+      <nav class="nav">
+        <a href="index.html">Blog</a>
+        <a href="new-post.html">Write</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Get in Touch</h1>
+      <p>Questions, feedback, or a topic you want covered? Drop us a line.</p>
+    </div>
+  </section>
+
+  <main class="section">
+    <div class="container">
+      <div class="form-card">
+        <div class="alert-success" id="success">Thanks! Your message has been recorded (demo only).</div>
+        <p class="note">This is a static demo form — it does not send data anywhere. Wire it to a service like Formspree or Netlify Forms to make it live.</p>
+        <form id="contact-form" onsubmit="return handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="What is this about?" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Type your message…" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Target Test Blog. Built as a static site, deployable on <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById("success").style.display = "block";
+      document.getElementById("contact-form").reset();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return false;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Blog Post — Target Test Blog</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">Target<span>Test</span></a>
+      <nav class="nav">
+        <a href="index.html">Blog</a>
+        <a href="new-post.html" class="active">Write</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Write a New Post</h1>
+      <p>Draft your next article. Preview it before you publish.</p>
+    </div>
+  </section>
+
+  <main class="section">
+    <div class="container">
+      <div class="form-card">
+        <div class="alert-success" id="success">Draft saved (demo only). Connect a backend or CMS to actually publish.</div>
+        <p class="note">This is a static demo editor — submitting only shows a local preview below. Hook it up to a CMS or a serverless function to persist posts.</p>
+        <form id="post-form" onsubmit="return handlePublish(event)">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="An eye-catching title" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="author">Author</label>
+              <input type="text" id="author" name="author" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select id="category" name="category">
+                <option>Getting Started</option>
+                <option>Tutorial</option>
+                <option>Design</option>
+                <option>Performance</option>
+                <option>Accessibility</option>
+                <option>Opinion</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="excerpt">Excerpt</label>
+            <input type="text" id="excerpt" name="excerpt" placeholder="A short summary shown in the blog list" />
+          </div>
+          <div class="form-group">
+            <label for="content">Content</label>
+            <textarea id="content" name="content" placeholder="Write your post here…" required></textarea>
+          </div>
+          <button type="submit" class="btn">Publish Preview</button>
+          <button type="reset" class="btn btn-ghost">Clear</button>
+        </form>
+      </div>
+
+      <div class="article" id="preview" style="display:none;">
+        <span class="tag" id="pv-tag"></span>
+        <h1 id="pv-title"></h1>
+        <div class="meta" id="pv-meta"></div>
+        <div id="pv-body"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Target Test Blog. Built as a static site, deployable on <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    function handlePublish(e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const author = document.getElementById("author").value;
+      const category = document.getElementById("category").value;
+      const content = document.getElementById("content").value;
+
+      document.getElementById("pv-tag").textContent = category;
+      document.getElementById("pv-title").textContent = title;
+      document.getElementById("pv-meta").textContent =
+        author + " · " + new Date().toLocaleDateString(undefined,
+          { year: "numeric", month: "long", day: "numeric" }) + " · Draft";
+      document.getElementById("pv-body").innerHTML =
+        content.split(/\n\n+/).map(function (p) {
+          return "<p>" + p.replace(/\n/g, "<br>") + "</p>";
+        }).join("");
+
+      document.getElementById("success").style.display = "block";
+      document.getElementById("preview").style.display = "block";
+      document.getElementById("preview").scrollIntoView({ behavior: "smooth" });
+      return false;
+    }
+  </script>
+</body>
+</html>
